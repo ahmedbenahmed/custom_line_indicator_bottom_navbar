@@ -58,6 +58,7 @@ class _MyExampleState extends State<MyExample> {
         // gradient: LinearGradient(
         //   colors: [Colors.pink, Colors.yellow],
         // ),
+        indicatorImage: 'assets/minus.png',
         customBottomBarItems: [
           CustomBottomBarItems(
             label: 'Home',

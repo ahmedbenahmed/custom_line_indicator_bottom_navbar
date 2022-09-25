@@ -2,6 +2,9 @@
 
 A fully customizable bottom navigation bar with line indicators and gradient.
 
+# My EDIT: 
+add use of custom image from assets as indicator
+
 <div style="display:flex">
 <img width="355" alt="alert2" src="https://user-images.githubusercontent.com/44444254/119264671-31b10b00-bbf5-11eb-8135-016bb51d33a7.png" width="200">
 <img width="355" alt="alert2" src="https://user-images.githubusercontent.com/44444254/119265100-928d1300-bbf6-11eb-92c6-f57cdcb30108.png" width="200">

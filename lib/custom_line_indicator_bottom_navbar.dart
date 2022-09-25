@@ -21,23 +21,25 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   final double unselectedIconSize;
   final LinearGradient? gradient;
 
-  CustomLineIndicatorBottomNavbar({
-    this.backgroundColor,
-    this.selectedColor,
-    required this.customBottomBarItems,
-    this.unSelectedColor,
-    this.unselectedFontSize = 11,
-    this.selectedFontSize = 12,
-    this.selectedIconSize = 20,
-    this.unselectedIconSize = 15,
-    this.splashColor,
-    this.currentIndex = 0,
-    required this.onTap,
-    this.enableLineIndicator = true,
-    this.lineIndicatorWidth = 3,
-    this.indicatorType = IndicatorType.Top,
-    this.gradient,
-  });
+  final String? indicatorImage;
+
+  CustomLineIndicatorBottomNavbar(
+      {this.backgroundColor,
+      this.selectedColor,
+      required this.customBottomBarItems,
+      this.unSelectedColor,
+      this.unselectedFontSize = 11,
+      this.selectedFontSize = 12,
+      this.selectedIconSize = 20,
+      this.unselectedIconSize = 15,
+      this.splashColor,
+      this.currentIndex = 0,
+      required this.onTap,
+      this.enableLineIndicator = true,
+      this.lineIndicatorWidth = 3,
+      this.indicatorType = IndicatorType.Top,
+      this.gradient,
+      this.indicatorImage});
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
@@ -55,22 +57,22 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
             for (int i = 0; i < customBottomBarItems.length; i++) ...[
               Expanded(
                 child: CustomLineIndicatorBottomNavbarItems(
-                  selectedColor: selectedColor,
-                  unSelectedColor: unSelectedColor,
-                  icon: customBottomBarItems[i].icon,
-                  label: customBottomBarItems[i].label,
-                  unSelectedFontSize: unselectedFontSize,
-                  selectedFontSize: selectedFontSize,
-                  unselectedIconSize: unselectedIconSize,
-                  selectedIconSize: selectedIconSize,
-                  splashColor: splashColor,
-                  currentIndex: currentIndex,
-                  enableLineIndicator: enableLineIndicator,
-                  lineIndicatorWidth: lineIndicatorWidth,
-                  indicatorType: indicatorType,
-                  index: i,
-                  onTap: onTap,
-                ),
+                    selectedColor: selectedColor,
+                    unSelectedColor: unSelectedColor,
+                    icon: customBottomBarItems[i].icon,
+                    label: customBottomBarItems[i].label,
+                    unSelectedFontSize: unselectedFontSize,
+                    selectedFontSize: selectedFontSize,
+                    unselectedIconSize: unselectedIconSize,
+                    selectedIconSize: selectedIconSize,
+                    splashColor: splashColor,
+                    currentIndex: currentIndex,
+                    enableLineIndicator: enableLineIndicator,
+                    lineIndicatorWidth: lineIndicatorWidth,
+                    indicatorType: indicatorType,
+                    index: i,
+                    onTap: onTap,
+                    indicatorImage: indicatorImage),
               ),
             ]
           ],
@@ -107,24 +109,25 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   final bool enableLineIndicator;
   final double lineIndicatorWidth;
   final IndicatorType indicatorType;
+  final String? indicatorImage;
 
-  CustomLineIndicatorBottomNavbarItems({
-    this.icon,
-    this.label,
-    this.selectedColor,
-    this.unSelectedColor,
-    this.unSelectedFontSize = 11,
-    this.selectedFontSize = 12,
-    this.selectedIconSize = 20,
-    this.unselectedIconSize = 15,
-    this.splashColor,
-    this.currentIndex,
-    required this.onTap,
-    required this.index,
-    this.enableLineIndicator = true,
-    this.lineIndicatorWidth = 3,
-    this.indicatorType = IndicatorType.Top,
-  });
+  CustomLineIndicatorBottomNavbarItems(
+      {this.icon,
+      this.label,
+      this.selectedColor,
+      this.unSelectedColor,
+      this.unSelectedFontSize = 11,
+      this.selectedFontSize = 12,
+      this.selectedIconSize = 20,
+      this.unselectedIconSize = 15,
+      this.splashColor,
+      this.currentIndex,
+      required this.onTap,
+      required this.index,
+      this.enableLineIndicator = true,
+      this.lineIndicatorWidth = 3,
+      this.indicatorType = IndicatorType.Top,
+      this.indicatorImage});
 
   @override
   Widget build(BuildContext context) {
@@ -143,28 +146,12 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                border: enableLineIndicator
-                    ? Border(
-                        bottom: indicatorType == IndicatorType.Bottom
-                            ? BorderSide(
-                                color: currentIndex == index
-                                    ? selectedColor ??
-                                        bottomTheme.selectedItemColor!
-                                    : Colors.transparent,
-                                width: lineIndicatorWidth,
-                              )
-                            : BorderSide(color: Colors.transparent),
-                        top: indicatorType == IndicatorType.Top
-                            ? BorderSide(
-                                color: currentIndex == index
-                                    ? selectedColor ??
-                                        bottomTheme.selectedItemColor!
-                                    : Colors.transparent,
-                                width: lineIndicatorWidth,
-                              )
-                            : BorderSide(color: Colors.transparent),
-                      )
+                image: currentIndex == index
+                    ? DecorationImage(
+                        image: AssetImage(indicatorImage!),
+                        alignment: Alignment.topCenter)
                     : null,
+                border: null,
               ),
               padding: EdgeInsets.symmetric(vertical: 7.0),
               // width: 70,
